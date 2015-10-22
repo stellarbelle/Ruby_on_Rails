@@ -1,0 +1,26 @@
+<html>
+  <head>
+	  	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+    	<p><a href="/users/logout">Logout</a></p>
+    	<p><a href="/posts/show">Bright Ideas</a></p>
+    	<br>
+    	<h2><%= @user.name %></h2>
+    	<h2><%= @user.alias %></h2>
+	    <h2><%= @user.email %></h2>
+	    <hr>
+	    <p>Total Number of Posts: <%= Post.where(:User_id => @user.id).count %></p>
+	    <p>Total Number of Likes: <%= Like.where(:User_id => @user.id).count %></p>
+	</div>
+  </body>
+</html>

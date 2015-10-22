@@ -1,0 +1,36 @@
+<html>
+  <head>
+	  	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+    	<p><a href="/users/logout">Logout</a></p>
+    	<p><a href="/posts/show">Bright Ideas</a></p>
+    	<h2><a href="/users/show/<%= @post.User_id %>"><%= User.find(@post.User_id).alias %></a> says:</h2>
+	    <h2><%= @post.post %></h2>
+	    <br>
+	    <h2>People who like this post:</h2>
+		<table class="table">
+		    <tr>
+		      <th>Alias</th>
+		      <th>Name</th>
+		    </tr>
+		      <% @likes.each do |l| %>
+		    			<tr>
+					      <td><a href="/users/show/<%= l[0] %>"><%= User.find(l[0]).alias %></a></td>
+					      <td><%= User.find(l[0]).name %></td>
+				    	</tr>
+			  <% end %>
+	    	</tr>
+
+	</div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+  <head>
+	  	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+    	<p><a href="/users/logout">Logout</a></p>
+		<h1>Hi <%= @user.alias %>!</h1>
+		<br>
+  		<form action="/posts/create/<%= @user.id %>" method='POST'>
+  		  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  		  <div class="form-group">
+		    <textarea class="form-control" rows="5" id="post" name="post" placeholder="Post something here..."></textarea>
+		  </div>
+		  <button type="submit" class="btn btn-default">Idea!</button>
+		</form>
+		<br>
+		<% @posts.each do |p| %>
+			<p><a href="/users/show/<%= p.User_id %>"><%= User.find(p.User_id).alias %></a> says: <%= p.post %>
+				<% if @user.id == p.User_id %>
+					<a href="/posts/delete/<%= p.id %>">x</a>
+				<% end %>
+			</p>
+			<p><a href="/likes/create/<%= p.id %>">Like</a>
+				<a href="/likes/show/<%= p.id %>"><%= Like.where(:Post_id => p.id).count %> people</a> like this</p>
+			<br>
+		<% end %>
+	</div>
+  </body>
+</html>

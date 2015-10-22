@@ -1,0 +1,61 @@
+<html>
+  <head>
+	  	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+    	<h1>Welcome!</h1>
+	    <% if flash[:errors] %>
+	    	<%= flash[:errors] %>
+	    <% end %>	
+  		<form action="/users/create" method='POST'>
+  		  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  		  <h1>Register</h1>
+		  <div class="form-group">
+		    <label for="name">Name:</label>
+		    <input type="text" class="form-control" name="users[name]">
+		  </div>
+		  <div class="form-group">
+		    <label for="alias">Alias:</label>
+		    <input type="text" class="form-control" name="users[alias]">
+		  </div>
+		  <div class="form-group">
+		    <label for="email">Email:</label>
+		    <input type="text" class="form-control" name="users[email]">
+		  </div>
+		  <div class="form-group">
+		    <label for="password">Password:</label>
+		    <input type="password" class="form-control" name="users[password_digest]">
+		  </div>
+		  <p>*Password must be at least 8 characters</p>
+		  <div class="form-group">
+		    <label for="confirm_password">Confirm Password:</label>
+		    <input type="password" class="form-control" name="users[confirm_password]">
+		  </div>
+		  <button type="submit" class="btn btn-default">Register</button>
+		</form>
+		<form action="/users/login" method='POST'>
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		  <h1>Login</h1>
+		  <div class="form-group">
+		    <label for="email">Email:</label>
+		    <input type="text" class="form-control" name="email">
+		  </div>
+		  <div class="form-group">
+		    <label for="pw">Password:</label>
+		    <input type="password" class="form-control" name="password">
+		    <br>
+		    <button type="submit" class="btn btn-default">Login</button>
+		  </div>
+		</form>
+	</div>
+  </body>
+</html>
